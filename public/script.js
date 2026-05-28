@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Active nav highlight on scroll
-  const sections = document.querySelectorAll('section[id]');
+  const sections = document.querySelectorAll('section[id], div[id="hero"]');
   const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
 
   window.addEventListener('scroll', () => {

@@ -1,438 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nagamotorsport</title>
-    <style>
-        html {
-            height: 100%;
-            overflow: hidden;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #1a1a1a, #4a4a4a), url('background-image.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            height: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
-            position: relative;
-        }
-        nav a:hover {
-            color: #ffd700;
-        }
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        header {
-            padding: 1rem;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        .logo img {
-            height: 100px;
-            margin-left: 3rem;
-            margin-top: 1rem;
-        }
-        nav {
-            margin-left: 0.8rem;
-            margin-top: 1rem;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-        }
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: -2rem;
-            margin-bottom: 4rem;
-            margin-left: 5rem;
-        }
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        .hero-image {
-            flex: 1;
-            min-width: 300px;
-            height: 300px;
-            background-color: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 1rem;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .yellow {
-            color: #ffd700;
-        }
-        .buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s ease;
-        }
-        .btn-yellow {
-            background-color: #ffd700;
-            color: black;
-        }
-        .btn-yellow:hover {
-            background-color: #e6c200;
-            transform: translateY(-2px);
-        }
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid #ffd700;
-            color: white;
-        }
-        .btn-outline:hover {
-            background-color: #ffd700;
-            color: black;
-            transform: translateY(-2px);
-        }
-        .btn-outline-ng {
-            background-color: transparent;
-            border: 2px solid #ffffff;
-            color: rgb(0, 0, 0);
-        }
-        .btn-outline-ng:hover {
-            background-color: #000000;
-            color: #ffd700;
-            transform: translateY(-2px);
-        }
-        .btn:active {
-            transform: translateY(1px);
-        }
-        .content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        .map, .chat {
-            flex: 1;
-            min-width: 300px;
-        }
-        .map iframe {
-            width: 100%;
-            height: 300px;
-            border-radius: 10px;
-        }
-        .chat {
-            background-color: #333;
-            padding: 1rem;
-            border-radius: 10px;
-        }
-        .chat h3 {
-            margin-top: 0;
-        }
-        .chat-messages {
-            height: 200px;
-            overflow-y: auto;
-            margin-top: 3rem;
-        }
-        .message {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-        .avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            margin-right: 0.5rem;
-        }
-        .user-avatar {
-            background-color: #666;
-        }
-        .ai-avatar {
-            background-color: #ffd700;
-        }
-        .chat-input {
-            display: flex;
-        }
-        .chat-input input {
-            flex-grow: 1;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 5px 0 0 5px;
-        }
-        .chat-input button {
-            padding: 0.5rem 1rem;
-            background-color: #ffd700;
-            color: black;
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-        }
-        .image-container {
-            position: absolute;
-            top: 5%;
-            left: 70%;
-            width: 500px;
-            height: 500px;
-            background-image: url('car2.png');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            transform: translateX(-50%) scaleX(-1);
-        }
-        .reflection {
-            position: absolute;
-            top: 25%;
-            left: 70%;
-            width: 500px;
-            height: 500px;
-            background-image: url('car2.png');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            transform: translateX(-50%) scaleY(-1) scaleX(-1);
-            filter: blur(10px);
-            opacity: 0.2;
-            z-index: -1;
-        }
-        .background-logo {
-            position: absolute;
-            top: 35%;
-            left: 25%;
-            transform: translate(-50%, -50%);
-            opacity: 0.1;
-            z-index: -1;
-            height: 300px;
-        }
-        .about-us {
-            padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
-        .about-us h2 {
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-        .about-us p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        .about-us ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .about-us li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-        .about-us li::before {
-            content: "✓";
-            color: #ffd700;
-            margin-right: 0.5rem;
-        }
-        .announcement {
-            position: fixed;
-            top: 20px;
-            right: -350px;
-            background-color: rgba(255, 215, 0, 0.9);
-            color: black;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            max-width: 300px;
-            transition: right 0.5s ease-in-out;
-        }
-        .announcement.show {
-            right: 20px;
-        }
-        .announcement h3 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-        .announcement-close {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-        }
-        .announcement-close:hover {
-            transform: scale(1.2);
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-       
-
-
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                margin-left: 1rem;
-                margin-right: 1rem;
-            }
-            .hero-text, .hero-image {
-                width: 100%;
-            }
-            .car-container{
-                height:400px;
-                width:100%;
-            }
-            .image-container, .reflection {
-                position: relative;
-                left: 50%;
-                width: 500px; /* Increased from 500px */
-                height: 500px; /* Increased from 500px */
-                max-width: 100%;
-            }
-
-            .background-logo {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.1;
-            z-index: -1;
-            height: 200px;
-            }
-
-            .content {
-                flex-direction: column;
-            }
-            .map, .chat {
-                width: 100%;
-            }
-            .chat {
-                margin-left: -1rem;
-                margin-right: -1rem;
-                border-radius: 0;
-                margin-top: 1rem;
-            }
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-left: 1rem;
-            }
-            .logo img {
-                margin-left: 125%;
-            }
-            nav {
-                margin-left: 10%;
-                margin-top: 1rem;
-                display: flex;
-                flex-wrap: wrap;
-            }
-            nav > div {
-                margin-bottom: 0.5rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nagamotorsport — Safe. Save. Smile.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Nagamotorsport Logo">
-        </div>
-        <nav style="position: relative; display: flex; align-items: center;">
-            <div style="position: relative;">
-                <a href="#" style="text-decoration: none; padding-bottom: 2px;">Home</a>
-                <span style="display: block; width: 50%; height: 1px; background: white; position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%);"></span>
-            </div>
-            <div style="position: relative; margin-left: 1rem;">
-                <a href="#about-us" style="text-decoration: none; padding-bottom: 2px;">About Us</a>
-                <span style="display: block; width: 50%; height: 1px; background: white; position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%);"></span>
-            </div>
-            <div style="position: relative; margin-left: 1rem;">
-                <a href="#location" style="text-decoration: none; padding-bottom: 2px;">Location</a>
-                <span style="display: block; width: 50%; height: 1px; background: white; position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%);"></span>
-            </div>
-        </nav>
-    </header>
-    <div class="background-logo">
-        <img src="logo.png" alt="Background Logo" style="height: 550px;">
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Nagamotorsport" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="logo-fallback">NAGA<span>MOTORSPORT</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#location">Location</a>
+        <a href="http://nagamotorsports.wasap.my" target="_blank" class="nav-cta">Contact Us</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <main>
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Safe Save <span class="yellow">Smile</span></h1>
-                <p>Be safe, save your money and smile!</p>
-                <div class="buttons">
-                    <a href="https://www.facebook.com/share/18n6VLsfiD/?mibextid=wwXIfr" target="_blank">
-                        <button class="btn btn-yellow" style="display: flex; align-items: center;">
-                            <img src="facebook-icon.png" alt="Facebook" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 0.5rem;">
-                            Facebook
-                        </button>
-                    </a>
-                    
-                    <a href="http://nagamotorsports.wasap.my" target="_blank">
-                        <button class="btn btn-outline" style="display: flex; align-items: center;">
-                            <img src="whatsapp-logo.png" alt="WhatsApp" style="width: 18px; height: 18px; border-radius: 20%; margin-right: 0.5rem;">
-                            Contact Us
-                        </button>
-                    </a>
-                    
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="car-container">
-                    <div class="image-container"></div>
-                    <div class="reflection"></div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="about-us" class="about-us">
-            <h2>About Nagamotorsport</h2>
-            <p>Nagamotorsport is your premier destination for top-quality automotive services and products. With over a decade of experience in the industry, we've built a reputation for excellence and innovation.</p>
-            <p>Our mission is to ensure your safety on the road while maximizing your vehicle's performance. We pride ourselves on:</p>
-            <ul>
-                <li>Expert craftsmanship and attention to detail</li>
-                <li>Cutting-edge automotive technology</li>
-                <li>Personalized service tailored to your needs</li>
-                <li>Commitment to environmental sustainability</li>
-            </ul>
-            <p>Whether you're a casual driver or a motorsport enthusiast, Nagamotorsport has the expertise and products to elevate your driving experience. Visit us today and discover the difference that passion and precision can make.</p>
-        </section>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#location">Location</a>
+      <a href="http://nagamotorsports.wasap.my" target="_blank">Contact Us</a>
+    </div>
+  </nav>
 
-        <section class="content" id="location">
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.08855998179!2d101.6006683!3d3.0710104!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4c88ef6e074f%3A0xefb63cc91ddb1abd!2sNagamotorsport%20Sdn%20Bhd!5e0!3m2!1sen!2sau!4v1725769070687!5m2!1sen!2sau" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </section>
-        <br>
-       
-    </main>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-text">NAGA</div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Petaling Jaya's Trusted Workshop</div>
+      <h1>Safe.<br><span class="accent">Save.</span><br>Smile.</h1>
+      <p class="hero-sub">Be safe, save your money — and smile every time you drive.</p>
+      <div class="hero-actions">
+        <a href="https://www.facebook.com/share/18n6VLsfiD/?mibextid=wwXIfr" target="_blank" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="http://nagamotorsports.wasap.my" target="_blank" class="btn btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+    <div class="hero-car">
+      <div class="car-img" style="background-image: url('car2.png')"></div>
+      <div class="car-reflection" style="background-image: url('car2.png')"></div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-    
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Years Experience</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">5000+</span><span class="stat-label">Happy Customers</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Satisfaction Guarantee</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">4.9★</span><span class="stat-label">Google Rating</span></div>
+  </div>
 
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner about-grid">
+      <div class="about-text">
+        <div class="section-label">Who We Are</div>
+        <h2>Passion &amp; Precision<br>In Every Job</h2>
+        <p>Nagamotorsport is your premier destination for top-quality automotive services and products. With over a decade of experience, we've built a reputation for excellence and innovation in Petaling Jaya.</p>
+        <p>Our mission is simple: ensure your safety on the road while saving you money — and leaving you smiling.</p>
+        <ul class="check-list">
+          <li>Expert craftsmanship and attention to detail</li>
+          <li>Cutting-edge automotive technology</li>
+          <li>Personalised service tailored to your needs</li>
+          <li>Commitment to environmental sustainability</li>
+        </ul>
+        <a href="http://nagamotorsports.wasap.my" target="_blank" class="btn btn-primary" style="margin-top:2rem; display:inline-flex;">Get In Touch</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-card">
+          <div class="about-card-icon">🏆</div>
+          <div class="about-card-text">
+            <strong>Award-Winning Service</strong>
+            <span>Trusted by thousands of drivers across Klang Valley</span>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🔧</div>
+          <div class="about-card-text">
+            <strong>Skilled Technicians</strong>
+            <span>Trained professionals with decades of combined experience</span>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">💰</div>
+          <div class="about-card-text">
+            <strong>Honest Pricing</strong>
+            <span>Transparent quotes, no hidden fees, ever</span>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🌿</div>
+          <div class="about-card-text">
+            <strong>Eco-Conscious</strong>
+            <span>Responsible practices for a greener tomorrow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-label">What We Do</div>
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🛞</div>
+          <h3>Tyres &amp; Wheels</h3>
+          <p>Full tyre services including balancing, alignment, rotation, and replacements for all vehicle types.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3>Engine &amp; Mechanical</h3>
+          <p>Comprehensive engine diagnostics, servicing, and repairs to keep your car running at peak performance.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Body &amp; Accessories</h3>
+          <p>Custom body kits, accessories, and upgrades to make your vehicle stand out from the crowd.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <h3>Inspection &amp; Diagnostics</h3>
+          <p>Advanced computer diagnostics and full safety checks to catch problems before they cost you more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section id="location">
+    <div class="section-inner location-grid">
+      <div class="location-text">
+        <div class="section-label">Find Us</div>
+        <h2>Come Visit Us</h2>
+        <div class="location-info">
+          <div class="loc-item">
+            <span class="loc-icon">📍</span>
+            <span>Petaling Jaya, Selangor, Malaysia</span>
+          </div>
+          <div class="loc-item">
+            <span class="loc-icon">🕒</span>
+            <span>Mon – Sat: 9:00 AM – 6:00 PM</span>
+          </div>
+          <div class="loc-item">
+            <span class="loc-icon">💬</span>
+            <span><a href="http://nagamotorsports.wasap.my" target="_blank" style="color:#ffd700">Chat with us on WhatsApp</a></span>
+          </div>
+        </div>
+        <a href="https://maps.app.goo.gl/YourLink" target="_blank" class="btn btn-outline" style="margin-top:2rem; display:inline-flex;">Get Directions</a>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.08855998179!2d101.6006683!3d3.0710104!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4c88ef6e074f%3A0xefb63cc91ddb1abd!2sNagamotorsport%20Sdn%20Bhd!5e0!3m2!1sen!2sau!4v1725769070687!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Nagamotorsport location map"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <div class="cta-strip-inner">
+      <h2>Ready to experience the Nagamotorsport difference?</h2>
+      <a href="http://nagamotorsports.wasap.my" target="_blank" class="btn btn-primary">WhatsApp Us Now</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Nagamotorsport" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="logo-fallback">NAGA<span>MOTORSPORT</span></span>
+      </div>
+      <div class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#location">Location</a>
+      </div>
+      <p class="footer-copy">&copy; 2025 Nagamotorsport Sdn Bhd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
